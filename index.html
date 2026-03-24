@@ -1,13 +1,11 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="León Gym — Boutique Performance Hub en San Miguel de Tucumán. Musculación, Cardio, Personal Training y Nutrición de élite." />
+<html lang="es"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="León Gym — Boutique Performance Hub en San Miguel de Tucumán. Musculación, Cardio, Personal Training y Nutrición de élite.">
   <title>Leon Gym — Boutique Performance Hub</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&amp;display=swap" rel="stylesheet">
   <style>
     /* ===========================
    LEON GYM — styles.css
@@ -1026,49 +1024,88 @@ footer {
     </style>
 
   <!-- Inline SVG symbol for the heraldic lion logo — reused across the page -->
-  <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
-    <symbol id="lion-shield" viewBox="0 0 120 140" fill="none" stroke="currentColor"
-      stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round">
+  <style>      
+      /* Injected by five-server */
+      /*[data-highlight="true"] {
+        border: 1px rgb(90,170,255) solid !important;
+        background-color: rgba(155,215,255,0.5);
+        animation: fadeOutHighlight 1s forwards 0.5s;
+      }
+      img[data-highlight="true"] {
+        filter: sepia(100%) hue-rotate(180deg) saturate(200%);
+        animation: fadeOutHighlightIMG 0.5s forwards 0.5s;
+      }*/
+      @keyframes fadeOutHighlight {
+        from {background-color: rgba(155,215,255,0.5);}
+        to {background-color: rgba(155,215,255,0);}
+      }      
+      @keyframes fadeOutHighlightIMG {
+        0% {filter: sepia(100%) hue-rotate(180deg) saturate(200%);}
+        33% {filter: sepia(66%) hue-rotate(180deg) saturate(100%);}
+        50% {filter: sepia(50%) hue-rotate(90deg) saturate(50%);}
+        66% {filter: sepia(33%) hue-rotate(0deg) saturate(100%);}
+        100% {filter: sepia(0%) hue-rotate(0deg) saturate(100%);}
+      }
+      @keyframes fiveserverInfoPopup {
+        0%   {top:-40px;}
+        15%  {top:4px;}
+        85%  {top:4px;}
+        100% {top:-40px;}
+      }
+      /*smaller*/
+      @media (max-width: 640px) {
+        #fiveserver-info-wrapper {
+          max-width: 98%;
+        }
+        #fiveserver-info {
+          border-radius: 0px;
+        }      
+      }
+
+      </style></head><body><svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+    <symbol id="lion-shield" viewBox="0 0 120 140" fill="none" stroke="currentColor" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round">
       <!-- Crown -->
-      <path d="M45 20 L50 10 L60 25 L70 10 L75 20 L68 30 L52 30 Z"/>
-      <circle cx="50" cy="8" r="1.5" fill="currentColor" stroke="none"/>
-      <circle cx="70" cy="8" r="1.5" fill="currentColor" stroke="none"/>
-      <circle cx="60" cy="23" r="1.5" fill="currentColor" stroke="none"/>
+      <path d="M45 20 L50 10 L60 25 L70 10 L75 20 L68 30 L52 30 Z"></path>
+      <circle cx="50" cy="8" r="1.5" fill="currentColor" stroke="none"></circle>
+      <circle cx="70" cy="8" r="1.5" fill="currentColor" stroke="none"></circle>
+      <circle cx="60" cy="23" r="1.5" fill="currentColor" stroke="none"></circle>
       <!-- Outer Shield -->
-      <path d="M20 35 L100 35 C100 70 90 100 60 130 C30 100 20 70 20 35 Z"/>
+      <path d="M20 35 L100 35 C100 70 90 100 60 130 C30 100 20 70 20 35 Z"></path>
       <!-- Inner Shield Border -->
-      <path d="M26 40 L94 40 C94 70 85 96 60 122 C35 96 26 70 26 40 Z" stroke-width="0.5"/>
+      <path d="M26 40 L94 40 C94 70 85 96 60 122 C35 96 26 70 26 40 Z" stroke-width="0.5"></path>
       <!-- Mane lines -->
-      <path d="M60 45 L60 55 M50 48 L55 58 M70 48 L65 58 M40 55 L48 62 M80 55 L72 62 M35 70 L45 72 M85 70 L75 72 M35 85 L48 82 M85 85 L72 82 M45 95 L52 88 M75 95 L68 88 M60 105 L60 92" stroke-width="0.5"/>
+      <path d="M60 45 L60 55 M50 48 L55 58 M70 48 L65 58 M40 55 L48 62 M80 55 L72 62 M35 70 L45 72 M85 70 L75 72 M35 85 L48 82 M85 85 L72 82 M45 95 L52 88 M75 95 L68 88 M60 105 L60 92" stroke-width="0.5"></path>
       <!-- Brow and Eyes -->
-      <path d="M48 65 Q60 62 72 65"/>
-      <path d="M52 68 Q54 67 56 68"/>
-      <path d="M64 68 Q66 67 68 68"/>
+      <path d="M48 65 Q60 62 72 65"></path>
+      <path d="M52 68 Q54 67 56 68"></path>
+      <path d="M64 68 Q66 67 68 68"></path>
       <!-- Nose -->
-      <path d="M60 70 L55 82 L65 82 Z"/>
-      <path d="M60 82 L60 88"/>
+      <path d="M60 70 L55 82 L65 82 Z"></path>
+      <path d="M60 82 L60 88"></path>
       <!-- Mouth/Jaw -->
-      <path d="M54 90 Q60 95 66 90"/>
-      <path d="M52 92 Q60 100 68 92"/>
+      <path d="M54 90 Q60 95 66 90"></path>
+      <path d="M52 92 Q60 100 68 92"></path>
       <!-- Cheeks -->
-      <path d="M48 75 Q45 85 52 92"/>
-      <path d="M72 75 Q75 85 68 92"/>
+      <path d="M48 75 Q45 85 52 92"></path>
+      <path d="M72 75 Q75 85 68 92"></path>
     </symbol>
   </svg>
-</head>
+<!-- Code injected by Five-server -->
+  <script async="" data-id="five-server" data-file="c:\Users\Usuario\OneDrive\Desktop\Leon gym\index.html" type="application/javascript" src="/fiveserver.js"></script>
+  
 
-<body>
+
 
   <!-- ══════════════════════════════
        NAVBAR
        ══════════════════════════════ -->
-  <nav id="navbar">
+  <nav id="navbar" style="border-bottom-color: rgba(255, 255, 255, 0.08);">
     <div class="navbar-inner">
 
       <div class="navbar-brand" onclick="window.scrollTo({top:0,behavior:'smooth'})">
-        <svg aria-hidden="true" style="width:30px;height:35px;color:#B8B9BE">
-          <use href="#lion-shield"/>
-        </svg>
+        <img src="https://github.com/jgnurniu/LeonGym/blob/main/leon.png?raw=true" style="width:30px;height:35px;color:#B8B9BE">
+          <use href="#lion-shield"></use>
+        
         <span class="navbar-brand-name">Leon Gym</span>
       </div>
 
@@ -1103,20 +1140,16 @@ footer {
   <section id="hero">
 
     <div class="hero-bg">
-      <img
-        src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=85&w=2000&auto=format&fit=crop"
-        alt="Dark gym interior"
-        loading="eager"
-      />
+      <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=85&amp;w=2000&amp;auto=format&amp;fit=crop" alt="Dark gym interior" loading="eager">
       <div class="hero-bg-overlay"></div>
     </div>
 
     <div class="hero-content">
 
       <div class="hero-logo-wrap hero-anim-0">
-        <svg aria-hidden="true" style="width:120px;height:140px;color:#B8B9BE;filter:drop-shadow(0 0 60px rgba(184,185,190,0.15))">
-          <use href="#lion-shield"/>
-        </svg>
+        <img src="https://github.com/jgnurniu/LeonGym/blob/main/leon.png?raw=true" style="width:120px;height:140px;color:#B8B9BE;filter:drop-shadow(0 0 60px rgba(184,185,190,0.15))">
+          <use href="#lion-shield"></use>
+        
       </div>
 
       <div class="hero-divider hero-anim-1"></div>
@@ -1148,15 +1181,11 @@ footer {
     <div class="philosophy-layout">
 
       <div class="philosophy-photo">
-        <img
-          src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=85&w=900&auto=format&fit=crop"
-          alt="Wooden gym floor walkway"
-          loading="lazy"
-        />
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=85&amp;w=900&amp;auto=format&amp;fit=crop" alt="Wooden gym floor walkway" loading="lazy">
       </div>
 
       <div class="philosophy-text-wrap">
-        <div class="philosophy-text-inner reveal from-right">
+        <div class="philosophy-text-inner reveal from-right visible">
           <span class="philosophy-eyebrow">Filosofía</span>
           <h2 class="philosophy-heading">Un espacio donde la disciplina es arquitectura</h2>
           <p class="philosophy-body">
@@ -1182,38 +1211,26 @@ footer {
   <section id="espacios">
     <div class="spaces-inner">
 
-      <h2 class="section-heading reveal">Nuestros Espacios</h2>
+      <h2 class="section-heading reveal visible">Nuestros Espacios</h2>
 
       <div class="spaces-grid">
 
-        <div class="space-card reveal delay-1">
-          <img
-            src="https://images.unsplash.com/photo-1540497077202-7c8a3999166f?q=85&w=800&auto=format&fit=crop"
-            alt="Weight training area"
-            loading="lazy"
-          />
+        <div class="space-card reveal delay-1 visible">
+          <img src="https://images.unsplash.com/photo-1540497077202-7c8a3999166f?q=85&amp;w=800&amp;auto=format&amp;fit=crop" alt="Weight training area" loading="lazy">
           <div class="space-card-overlay"></div>
           <div class="space-card-border"></div>
           <div class="space-card-label"><h3>Power</h3></div>
         </div>
 
-        <div class="space-card reveal delay-2">
-          <img
-            src="https://images.unsplash.com/photo-1549060279-7e168fcee0c2?q=85&w=800&auto=format&fit=crop"
-            alt="Cardio and endurance training"
-            loading="lazy"
-          />
+        <div class="space-card reveal delay-2 visible">
+          <img src="https://images.unsplash.com/photo-1549060279-7e168fcee0c2?q=85&amp;w=800&amp;auto=format&amp;fit=crop" alt="Cardio and endurance training" loading="lazy">
           <div class="space-card-overlay"></div>
           <div class="space-card-border"></div>
           <div class="space-card-label"><h3>Endurance</h3></div>
         </div>
 
-        <div class="space-card reveal delay-3">
-          <img
-            src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?q=85&w=800&auto=format&fit=crop"
-            alt="Personal training performance"
-            loading="lazy"
-          />
+        <div class="space-card reveal delay-3 visible">
+          <img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?q=85&amp;w=800&amp;auto=format&amp;fit=crop" alt="Personal training performance" loading="lazy">
           <div class="space-card-overlay"></div>
           <div class="space-card-border"></div>
           <div class="space-card-label"><h3>Performance</h3></div>
@@ -1230,12 +1247,12 @@ footer {
   <section id="membresias">
     <div class="pricing-inner">
 
-      <h2 class="section-heading reveal">Elige tu Nivel</h2>
+      <h2 class="section-heading reveal visible">Elige tu Nivel</h2>
 
       <div class="pricing-grid">
 
         <!-- BÁSICO -->
-        <div class="pricing-card reveal delay-1">
+        <div class="pricing-card reveal delay-1 visible">
           <p class="pricing-name">Básico</p>
           <div class="pricing-price-row">
             <span class="pricing-price">$25.000</span>
@@ -1250,7 +1267,7 @@ footer {
         </div>
 
         <!-- PRO (featured) -->
-        <div class="pricing-card featured reveal delay-2">
+        <div class="pricing-card featured reveal delay-2 visible">
           <div class="pricing-badge">Más Popular</div>
           <p class="pricing-name">Pro</p>
           <div class="pricing-price-row">
@@ -1267,7 +1284,7 @@ footer {
         </div>
 
         <!-- ELITE -->
-        <div class="pricing-card reveal delay-3">
+        <div class="pricing-card reveal delay-3 visible">
           <p class="pricing-name">Elite</p>
           <div class="pricing-price-row">
             <span class="pricing-price">$50.000</span>
@@ -1293,11 +1310,7 @@ footer {
   <section id="contacto">
 
     <div class="location-bg">
-      <img
-        src="https://images.unsplash.com/photo-1486325212027-8081e485255e?q=85&w=2000&auto=format&fit=crop"
-        alt="Gym exterior at night"
-        loading="lazy"
-      />
+      <img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?q=85&amp;w=2000&amp;auto=format&amp;fit=crop" alt="Gym exterior at night" loading="lazy">
       <div class="location-bg-overlay"></div>
     </div>
 
@@ -1305,7 +1318,7 @@ footer {
       <div class="location-layout">
 
         <!-- Info -->
-        <div class="location-info reveal from-left">
+        <div class="location-info reveal from-left visible">
           <p class="location-eyebrow">Encuéntranos</p>
           <h3 class="location-address">Eudoro Aráoz 775</h3>
           <p class="location-city">San Miguel de Tucumán, Argentina</p>
@@ -1323,7 +1336,7 @@ footer {
         </div>
 
         <!-- Abstract Map -->
-        <div class="map-widget-wrap reveal from-right">
+        <div class="map-widget-wrap reveal from-right visible">
           <div class="map-widget">
             <div class="map-grid-lines">
               <div class="map-h-line"></div>
@@ -1358,9 +1371,9 @@ footer {
     <div class="footer-inner">
 
       <div class="footer-brand" onclick="window.scrollTo({top:0,behavior:'smooth'})">
-        <svg aria-hidden="true" style="width:40px;height:45px;color:#B8B9BE">
-          <use href="#lion-shield"/>
-        </svg>
+        <img src="https://github.com/jgnurniu/LeonGym/blob/main/leon.png?raw=true" style="width:40px;height:45px;color:#B8B9BE">
+          <use href="#lion-shield"></use>
+        
         <span class="footer-brand-name">Leon Gym</span>
       </div>
 
@@ -1375,27 +1388,27 @@ footer {
         <!-- Instagram -->
         <a href="#" aria-label="Instagram">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-            <circle cx="12" cy="12" r="4"/>
-            <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/>
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+            <circle cx="12" cy="12" r="4"></circle>
+            <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"></circle>
           </svg>
         </a>
         <!-- Facebook -->
         <a href="#" aria-label="Facebook">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
           </svg>
         </a>
         <!-- WhatsApp -->
         <a href="#" aria-label="WhatsApp">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+            <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
           </svg>
         </a>
       </div>
 
       <p class="footer-copy">
-        &copy; <span id="year"></span> Leon Gym · Todos los derechos reservados
+        © <span id="year">2026</span> Leon Gym · Todos los derechos reservados
       </p>
 
     </div>
@@ -1509,5 +1522,6 @@ document.querySelectorAll('.footer-nav a').forEach(function(link) {
 });
 
   </script>
-</body>
-</html>
+
+
+</body></html>
