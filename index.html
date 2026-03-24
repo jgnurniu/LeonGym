@@ -1,0 +1,1513 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="León Gym — Boutique Performance Hub en San Miguel de Tucumán. Musculación, Cardio, Personal Training y Nutrición de élite." />
+  <title>Leon Gym — Boutique Performance Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet" />
+  <style>
+    /* ===========================
+   LEON GYM — styles.css
+   Standalone production build
+   =========================== */
+
+/* ── Reset & Base ── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #0a0a0a;
+  color: #F5F5F5;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+::selection {
+  background-color: #39FF14;
+  color: #000;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+button {
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-family: inherit;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* ── Custom Scrollbar ── */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #0a0a0a; }
+::-webkit-scrollbar-thumb { background: #8A8A8A; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #B8B9BE; }
+
+
+/* ══════════════════════════════
+   REVEAL ANIMATIONS
+   Elements start hidden, JS adds .visible
+   ══════════════════════════════ */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.reveal.from-left {
+  transform: translateX(-30px);
+}
+.reveal.from-right {
+  transform: translateX(30px);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+.reveal.delay-1 { transition-delay: 0.1s; }
+.reveal.delay-2 { transition-delay: 0.2s; }
+.reveal.delay-3 { transition-delay: 0.3s; }
+.reveal.delay-4 { transition-delay: 0.4s; }
+
+/* Hero elements animate in on load */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.hero-anim-0 { animation: fadeUp 0.8s ease forwards; }
+.hero-anim-1 { animation: fadeUp 0.8s ease 0.2s both; }
+.hero-anim-2 { animation: fadeUp 0.8s ease 0.4s both; }
+.hero-anim-3 { animation: fadeUp 0.8s ease 0.6s both; }
+
+
+/* ══════════════════════════════
+   NAVBAR
+   ══════════════════════════════ */
+#navbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 50;
+  height: 72px;
+  background-color: rgba(10, 10, 10, 0.85);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.navbar-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 24px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+}
+
+.navbar-brand svg {
+  width: 30px;
+  height: 35px;
+  color: #B8B9BE;
+}
+
+.navbar-brand-name {
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: 0.2em;
+  color: #B8B9BE;
+  text-transform: uppercase;
+}
+
+.navbar-links {
+  display: none;
+  align-items: center;
+  gap: 32px;
+}
+
+.navbar-links button {
+  font-size: 11px;
+  color: #8A8A8A;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-weight: 400;
+  transition: color 0.2s ease;
+}
+.navbar-links button:hover { color: #F5F5F5; }
+
+.navbar-cta {
+  padding: 10px 24px;
+  background: transparent;
+  color: #8A8A8A;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-weight: 400;
+  transition: color 0.3s, border-color 0.3s;
+}
+.navbar-cta:hover {
+  color: #F5F5F5;
+  border-color: #F5F5F5;
+}
+
+/* Hamburger (mobile) */
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+}
+.hamburger span {
+  display: block;
+  width: 22px;
+  height: 1.5px;
+  background: #B8B9BE;
+  transition: all 0.3s;
+}
+.hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+/* Mobile menu */
+.mobile-menu {
+  display: none;
+  position: fixed;
+  top: 72px; left: 0; right: 0;
+  background: rgba(10,10,10,0.97);
+  backdrop-filter: blur(24px);
+  z-index: 49;
+  padding: 24px;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.mobile-menu.open { display: block; }
+.mobile-menu button {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 14px 0;
+  font-size: 13px;
+  color: #8A8A8A;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  transition: color 0.2s;
+}
+.mobile-menu button:hover { color: #F5F5F5; }
+
+
+/* ══════════════════════════════
+   HERO
+   ══════════════════════════════ */
+#hero {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: #0a0a0a;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.hero-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-bg-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.5) 50%, #0a0a0a 100%);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 16px;
+  width: 100%;
+  padding-top: 72px;
+}
+
+.hero-logo-wrap {
+  margin-bottom: 24px;
+}
+
+.hero-logo-wrap svg {
+  width: 120px;
+  height: 140px;
+  color: #B8B9BE;
+  filter: drop-shadow(0 0 60px rgba(184,185,190,0.15));
+}
+
+.hero-divider {
+  width: 80px;
+  height: 1px;
+  background: rgba(255,255,255,0.15);
+  margin: 0 auto 40px;
+}
+
+.hero-headline-1 {
+  font-size: clamp(48px, 10vw, 120px);
+  font-weight: 900;
+  color: #F5F5F5;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.hero-headline-2 {
+  font-size: clamp(48px, 10vw, 120px);
+  font-weight: 900;
+  color: #B8B9BE;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  text-transform: uppercase;
+  margin-bottom: 40px;
+}
+
+.hero-subtext {
+  font-size: 11px;
+  color: #8A8A8A;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  font-weight: 300;
+  margin-bottom: 48px;
+}
+
+.btn-primary {
+  display: inline-block;
+  padding: 16px 40px;
+  background: #F5F5F5;
+  color: #000;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+.btn-primary:hover {
+  background: transparent;
+  border-color: #39FF14;
+  color: #39FF14;
+}
+
+.hero-bottom-fade {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 128px;
+  background: linear-gradient(to top, #0d0d0d, transparent);
+  z-index: 10;
+}
+
+
+/* ══════════════════════════════
+   PHILOSOPHY
+   ══════════════════════════════ */
+#filosofia {
+  position: relative;
+  width: 100%;
+  background: #0d0d0d;
+  overflow: hidden;
+}
+
+.philosophy-wood-overlay {
+  position: absolute;
+  inset: 0;
+  opacity: 0.5;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    repeating-linear-gradient(92deg, rgba(139,105,20,0.03) 0px, rgba(139,105,20,0.03) 1px, transparent 1px, transparent 60px),
+    repeating-linear-gradient(175deg, rgba(139,105,20,0.02) 0px, rgba(139,105,20,0.02) 1px, transparent 1px, transparent 40px);
+}
+
+.philosophy-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 800px;
+  position: relative;
+  z-index: 1;
+}
+
+.philosophy-photo {
+  width: 100%;
+  height: 50vh;
+  overflow: hidden;
+}
+
+.philosophy-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(0.7) contrast(1.1);
+}
+
+.philosophy-text-wrap {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 64px 32px;
+}
+
+.philosophy-text-inner {
+  max-width: 560px;
+  padding-left: 24px;
+  border-left: 1px solid #B8B9BE;
+}
+
+.philosophy-eyebrow {
+  display: block;
+  font-size: 10px;
+  color: #8A8A8A;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  font-weight: 300;
+  margin-bottom: 24px;
+}
+
+.philosophy-heading {
+  font-size: clamp(28px, 4vw, 48px);
+  font-weight: 900;
+  color: #F5F5F5;
+  text-transform: uppercase;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  margin-bottom: 32px;
+}
+
+.philosophy-body {
+  font-size: 16px;
+  color: #8A8A8A;
+  line-height: 1.8;
+  font-weight: 400;
+  margin-bottom: 48px;
+}
+
+.philosophy-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  align-items: center;
+  font-size: 12px;
+  color: #B8B9BE;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-weight: 500;
+}
+
+.philosophy-stats-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #B8B9BE;
+  flex-shrink: 0;
+}
+
+
+/* ══════════════════════════════
+   SPACES
+   ══════════════════════════════ */
+#espacios {
+  padding: 96px 0;
+  background: #0a0a0a;
+}
+
+.spaces-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.section-heading {
+  font-size: clamp(36px, 6vw, 80px);
+  font-weight: 900;
+  color: #F5F5F5;
+  text-align: center;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  margin-bottom: 64px;
+}
+
+.spaces-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+.space-card {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  aspect-ratio: 16/9;
+  min-height: 280px;
+}
+
+.space-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s ease;
+}
+
+.space-card:hover img {
+  transform: scale(1.05);
+}
+
+.space-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 50%, transparent 100%);
+  transition: background 0.5s ease;
+}
+
+.space-card:hover .space-card-overlay {
+  background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 50%, transparent 100%);
+}
+
+.space-card-border {
+  position: absolute;
+  inset: 0;
+  border: 1px solid transparent;
+  transition: border-color 0.5s ease;
+  pointer-events: none;
+}
+
+.space-card:hover .space-card-border {
+  border-color: rgba(184,185,190,0.3);
+}
+
+.space-card-label {
+  position: absolute;
+  bottom: 40px;
+  left: 0; right: 0;
+  text-align: center;
+}
+
+.space-card-label h3 {
+  font-size: 22px;
+  font-weight: 900;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+
+/* ══════════════════════════════
+   PRICING
+   ══════════════════════════════ */
+#membresias {
+  padding: 96px 0;
+  background: #0d0d0d;
+}
+
+.pricing-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.pricing-card {
+  position: relative;
+  background: #111111;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(255,255,255,0.03);
+}
+
+.pricing-card.featured {
+  border: 1px solid rgba(184,185,190,0.4);
+  box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+  z-index: 1;
+}
+
+.pricing-badge {
+  position: absolute;
+  top: 0; left: 50%;
+  transform: translate(-50%, -50%);
+  background: #B8B9BE;
+  color: #0a0a0a;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 4px 16px;
+  white-space: nowrap;
+}
+
+.pricing-name {
+  font-size: 20px;
+  font-weight: 700;
+  color: #F5F5F5;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.pricing-price-row {
+  display: flex;
+  align-items: baseline;
+  margin-bottom: 32px;
+}
+
+.pricing-price {
+  font-size: clamp(36px, 5vw, 48px);
+  font-weight: 900;
+  color: #F5F5F5;
+}
+
+.pricing-period {
+  font-size: 13px;
+  color: #8A8A8A;
+  margin-left: 8px;
+}
+
+.pricing-features {
+  list-style: none;
+  margin-bottom: 40px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.pricing-features li {
+  display: flex;
+  align-items: flex-start;
+  font-size: 14px;
+  color: #8A8A8A;
+}
+
+.pricing-features li::before {
+  content: '—';
+  color: #B8B9BE;
+  margin-right: 12px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.btn-pricing {
+  width: 100%;
+  padding: 16px;
+  background: #F5F5F5;
+  color: #000;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s, border-color 0.3s;
+}
+.btn-pricing:hover {
+  background: transparent;
+  border-color: #39FF14;
+  color: #39FF14;
+}
+
+
+/* ══════════════════════════════
+   LOCATION
+   ══════════════════════════════ */
+#contacto {
+  position: relative;
+  width: 100%;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  background: #0a0a0a;
+}
+
+.location-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.location-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(0.5);
+}
+
+.location-bg-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(10,10,10,0.85);
+}
+
+.location-inner {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 96px 24px;
+}
+
+.location-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+  align-items: flex-start;
+}
+
+.location-info {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.location-eyebrow {
+  font-size: 12px;
+  color: #B8B9BE;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  font-weight: 300;
+  margin-bottom: 24px;
+}
+
+.location-address {
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 700;
+  color: #fff;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.location-city {
+  font-size: 17px;
+  color: #8A8A8A;
+  margin-bottom: 32px;
+}
+
+.location-divider {
+  width: 100%;
+  max-width: 320px;
+  height: 1px;
+  background: rgba(255,255,255,0.1);
+  margin-bottom: 32px;
+}
+
+.schedule-eyebrow {
+  font-size: 11px;
+  color: #B8B9BE;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  font-weight: 400;
+  margin-bottom: 16px;
+}
+
+.schedule-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 14px;
+  color: #8A8A8A;
+  margin-bottom: 32px;
+}
+
+.location-links {
+  display: flex;
+  gap: 24px;
+  margin-top: 16px;
+}
+
+.location-link {
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  color: #F5F5F5;
+  text-transform: uppercase;
+  border-bottom: 1px solid transparent;
+  padding-bottom: 4px;
+  transition: border-color 0.2s, color 0.2s;
+}
+.location-link:hover {
+  border-bottom-color: #39FF14;
+  color: #39FF14;
+}
+
+/* Abstract Map */
+.map-widget-wrap {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.map-widget {
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+  aspect-ratio: 1;
+  background: #050505;
+  border: 1px solid rgba(255,255,255,0.05);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.map-grid-lines {
+  position: absolute;
+  inset: 0;
+  opacity: 0.1;
+}
+
+.map-h-line {
+  position: absolute;
+  left: 0; right: 0;
+  height: 1px;
+  background: #B8B9BE;
+}
+.map-h-line:nth-child(1) { top: 20%; }
+.map-h-line:nth-child(2) { top: 35%; }
+.map-h-line:nth-child(3) { top: 50%; }
+.map-h-line:nth-child(4) { top: 65%; }
+.map-h-line:nth-child(5) { top: 80%; }
+
+.map-v-line {
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 1px;
+  background: #B8B9BE;
+}
+.map-v-line:nth-child(6)  { left: 20%; }
+.map-v-line:nth-child(7)  { left: 35%; }
+.map-v-line:nth-child(8)  { left: 50%; }
+.map-v-line:nth-child(9)  { left: 65%; }
+.map-v-line:nth-child(10) { left: 80%; }
+
+.map-crosshair-h {
+  position: absolute;
+  top: 50%; left: 0; right: 0;
+  height: 1px;
+  background: rgba(184,185,190,0.3);
+  transform: translateY(-50%);
+}
+
+.map-crosshair-v {
+  position: absolute;
+  left: 50%; top: 0; bottom: 0;
+  width: 1px;
+  background: rgba(184,185,190,0.3);
+  transform: translateX(-50%);
+}
+
+.map-center {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.map-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #B8B9BE;
+  box-shadow: 0 0 15px rgba(184,185,190,0.5);
+  transition: transform 0.5s ease;
+}
+
+.map-widget:hover .map-dot {
+  transform: scale(1.5);
+}
+
+.map-label {
+  margin-top: 16px;
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  font-weight: 700;
+  color: #F5F5F5;
+  text-transform: uppercase;
+}
+
+
+/* ══════════════════════════════
+   FOOTER
+   ══════════════════════════════ */
+footer {
+  background: #050505;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  padding: 64px 0;
+}
+
+.footer-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  margin-bottom: 32px;
+}
+
+.footer-brand svg {
+  width: 40px;
+  height: 45px;
+  color: #B8B9BE;
+}
+
+.footer-brand-name {
+  font-weight: 700;
+  font-size: 20px;
+  letter-spacing: 0.2em;
+  color: #B8B9BE;
+  text-transform: uppercase;
+}
+
+.footer-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px 40px;
+  margin-bottom: 40px;
+}
+
+.footer-nav a {
+  font-size: 11px;
+  color: #8A8A8A;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  transition: color 0.2s;
+}
+.footer-nav a:hover { color: #F5F5F5; }
+
+.footer-socials {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
+.footer-socials a {
+  color: #B8B9BE;
+  transition: color 0.2s;
+}
+.footer-socials a:hover { color: #fff; }
+
+.footer-socials svg {
+  width: 20px;
+  height: 20px;
+}
+
+.footer-copy {
+  font-size: 11px;
+  color: #8A8A8A;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+
+/* ══════════════════════════════
+   RESPONSIVE — Tablet & Desktop
+   ══════════════════════════════ */
+@media (min-width: 768px) {
+  .navbar-links { display: flex; }
+  .hamburger { display: none; }
+
+  .philosophy-layout {
+    flex-direction: row;
+    min-height: 100vh;
+  }
+
+  .philosophy-photo {
+    width: 50%;
+    height: auto;
+  }
+
+  .philosophy-text-wrap {
+    width: 50%;
+    padding: 64px 64px;
+  }
+
+  .spaces-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .space-card {
+    aspect-ratio: 9 / 16;
+    min-height: 400px;
+  }
+
+  .pricing-grid {
+    grid-template-columns: repeat(3, 1fr);
+    align-items: start;
+  }
+
+  .pricing-card.featured {
+    transform: translateY(-16px);
+  }
+
+  .location-layout {
+    flex-direction: row;
+    gap: 32px;
+    align-items: center;
+  }
+
+  .location-info {
+    width: 50%;
+  }
+
+  .map-widget-wrap {
+    width: 50%;
+    justify-content: flex-end;
+  }
+}
+
+@media (min-width: 1024px) {
+  .philosophy-text-wrap {
+    padding: 64px 96px;
+  }
+}
+
+    </style>
+
+  <!-- Inline SVG symbol for the heraldic lion logo — reused across the page -->
+  <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+    <symbol id="lion-shield" viewBox="0 0 120 140" fill="none" stroke="currentColor"
+      stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round">
+      <!-- Crown -->
+      <path d="M45 20 L50 10 L60 25 L70 10 L75 20 L68 30 L52 30 Z"/>
+      <circle cx="50" cy="8" r="1.5" fill="currentColor" stroke="none"/>
+      <circle cx="70" cy="8" r="1.5" fill="currentColor" stroke="none"/>
+      <circle cx="60" cy="23" r="1.5" fill="currentColor" stroke="none"/>
+      <!-- Outer Shield -->
+      <path d="M20 35 L100 35 C100 70 90 100 60 130 C30 100 20 70 20 35 Z"/>
+      <!-- Inner Shield Border -->
+      <path d="M26 40 L94 40 C94 70 85 96 60 122 C35 96 26 70 26 40 Z" stroke-width="0.5"/>
+      <!-- Mane lines -->
+      <path d="M60 45 L60 55 M50 48 L55 58 M70 48 L65 58 M40 55 L48 62 M80 55 L72 62 M35 70 L45 72 M85 70 L75 72 M35 85 L48 82 M85 85 L72 82 M45 95 L52 88 M75 95 L68 88 M60 105 L60 92" stroke-width="0.5"/>
+      <!-- Brow and Eyes -->
+      <path d="M48 65 Q60 62 72 65"/>
+      <path d="M52 68 Q54 67 56 68"/>
+      <path d="M64 68 Q66 67 68 68"/>
+      <!-- Nose -->
+      <path d="M60 70 L55 82 L65 82 Z"/>
+      <path d="M60 82 L60 88"/>
+      <!-- Mouth/Jaw -->
+      <path d="M54 90 Q60 95 66 90"/>
+      <path d="M52 92 Q60 100 68 92"/>
+      <!-- Cheeks -->
+      <path d="M48 75 Q45 85 52 92"/>
+      <path d="M72 75 Q75 85 68 92"/>
+    </symbol>
+  </svg>
+</head>
+
+<body>
+
+  <!-- ══════════════════════════════
+       NAVBAR
+       ══════════════════════════════ -->
+  <nav id="navbar">
+    <div class="navbar-inner">
+
+      <div class="navbar-brand" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+        <svg aria-hidden="true" style="width:30px;height:35px;color:#B8B9BE">
+          <use href="#lion-shield"/>
+        </svg>
+        <span class="navbar-brand-name">Leon Gym</span>
+      </div>
+
+      <div class="navbar-links">
+        <button onclick="scrollTo('filosofia')">Filosofía</button>
+        <button onclick="scrollTo('espacios')">Espacios</button>
+        <button onclick="scrollTo('membresias')">Membresías</button>
+        <button onclick="scrollTo('contacto')">Contacto</button>
+      </div>
+
+      <button class="navbar-cta" onclick="scrollTo('membresias')">Reservar Sesión</button>
+
+      <div class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menú">
+        <span></span><span></span><span></span>
+      </div>
+
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobile-menu">
+    <button onclick="scrollTo('filosofia');closeMenu()">Filosofía</button>
+    <button onclick="scrollTo('espacios');closeMenu()">Espacios</button>
+    <button onclick="scrollTo('membresias');closeMenu()">Membresías</button>
+    <button onclick="scrollTo('contacto');closeMenu()">Contacto</button>
+  </div>
+
+
+  <!-- ══════════════════════════════
+       HERO
+       ══════════════════════════════ -->
+  <section id="hero">
+
+    <div class="hero-bg">
+      <img
+        src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=85&w=2000&auto=format&fit=crop"
+        alt="Dark gym interior"
+        loading="eager"
+      />
+      <div class="hero-bg-overlay"></div>
+    </div>
+
+    <div class="hero-content">
+
+      <div class="hero-logo-wrap hero-anim-0">
+        <svg aria-hidden="true" style="width:120px;height:140px;color:#B8B9BE;filter:drop-shadow(0 0 60px rgba(184,185,190,0.15))">
+          <use href="#lion-shield"/>
+        </svg>
+      </div>
+
+      <div class="hero-divider hero-anim-1"></div>
+
+      <div class="hero-anim-2">
+        <p class="hero-headline-1">Unleash the</p>
+        <p class="hero-headline-2">Leon Within</p>
+      </div>
+
+      <div class="hero-anim-3">
+        <p class="hero-subtext">Boutique Performance Hub · San Miguel de Tucumán</p>
+        <button class="btn-primary" onclick="scrollTo('membresias')">
+          Comenzar mi transformación
+        </button>
+      </div>
+
+    </div>
+
+    <div class="hero-bottom-fade"></div>
+  </section>
+
+
+  <!-- ══════════════════════════════
+       PHILOSOPHY — La Filosofía
+       ══════════════════════════════ -->
+  <section id="filosofia">
+    <div class="philosophy-wood-overlay"></div>
+
+    <div class="philosophy-layout">
+
+      <div class="philosophy-photo">
+        <img
+          src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=85&w=900&auto=format&fit=crop"
+          alt="Wooden gym floor walkway"
+          loading="lazy"
+        />
+      </div>
+
+      <div class="philosophy-text-wrap">
+        <div class="philosophy-text-inner reveal from-right">
+          <span class="philosophy-eyebrow">Filosofía</span>
+          <h2 class="philosophy-heading">Un espacio donde la disciplina es arquitectura</h2>
+          <p class="philosophy-body">
+            No somos un gimnasio. Somos un ecosistema de alto rendimiento. Cada rincón de León Gym fue diseñado para eliminar la distancia entre donde estás y donde quieres estar.
+          </p>
+          <div class="philosophy-stats">
+            <span>500+ Atletas</span>
+            <span class="philosophy-stats-dot"></span>
+            <span>8 Años</span>
+            <span class="philosophy-stats-dot"></span>
+            <span>Tucumán #1</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════
+       SPACES — Nuestros Espacios
+       ══════════════════════════════ -->
+  <section id="espacios">
+    <div class="spaces-inner">
+
+      <h2 class="section-heading reveal">Nuestros Espacios</h2>
+
+      <div class="spaces-grid">
+
+        <div class="space-card reveal delay-1">
+          <img
+            src="https://images.unsplash.com/photo-1540497077202-7c8a3999166f?q=85&w=800&auto=format&fit=crop"
+            alt="Weight training area"
+            loading="lazy"
+          />
+          <div class="space-card-overlay"></div>
+          <div class="space-card-border"></div>
+          <div class="space-card-label"><h3>Power</h3></div>
+        </div>
+
+        <div class="space-card reveal delay-2">
+          <img
+            src="https://images.unsplash.com/photo-1549060279-7e168fcee0c2?q=85&w=800&auto=format&fit=crop"
+            alt="Cardio and endurance training"
+            loading="lazy"
+          />
+          <div class="space-card-overlay"></div>
+          <div class="space-card-border"></div>
+          <div class="space-card-label"><h3>Endurance</h3></div>
+        </div>
+
+        <div class="space-card reveal delay-3">
+          <img
+            src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?q=85&w=800&auto=format&fit=crop"
+            alt="Personal training performance"
+            loading="lazy"
+          />
+          <div class="space-card-overlay"></div>
+          <div class="space-card-border"></div>
+          <div class="space-card-label"><h3>Performance</h3></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════
+       PRICING — Membresías
+       ══════════════════════════════ -->
+  <section id="membresias">
+    <div class="pricing-inner">
+
+      <h2 class="section-heading reveal">Elige tu Nivel</h2>
+
+      <div class="pricing-grid">
+
+        <!-- BÁSICO -->
+        <div class="pricing-card reveal delay-1">
+          <p class="pricing-name">Básico</p>
+          <div class="pricing-price-row">
+            <span class="pricing-price">$25.000</span>
+            <span class="pricing-period">ARS/mes</span>
+          </div>
+          <ul class="pricing-features">
+            <li>Musculación</li>
+            <li>Cardio</li>
+            <li>Vestuarios</li>
+          </ul>
+          <button class="btn-pricing">Inscribirme</button>
+        </div>
+
+        <!-- PRO (featured) -->
+        <div class="pricing-card featured reveal delay-2">
+          <div class="pricing-badge">Más Popular</div>
+          <p class="pricing-name">Pro</p>
+          <div class="pricing-price-row">
+            <span class="pricing-price">$35.000</span>
+            <span class="pricing-period">ARS/mes</span>
+          </div>
+          <ul class="pricing-features">
+            <li>Todo Básico</li>
+            <li>Clases grupales</li>
+            <li>Evaluación InBody</li>
+            <li>Plan nutricional</li>
+          </ul>
+          <button class="btn-pricing">Inscribirme</button>
+        </div>
+
+        <!-- ELITE -->
+        <div class="pricing-card reveal delay-3">
+          <p class="pricing-name">Elite</p>
+          <div class="pricing-price-row">
+            <span class="pricing-price">$50.000</span>
+            <span class="pricing-period">ARS/mes</span>
+          </div>
+          <ul class="pricing-features">
+            <li>Acceso VIP 24/7</li>
+            <li>PT 2x semana</li>
+            <li>Nutricionista</li>
+            <li>Locker exclusivo</li>
+          </ul>
+          <button class="btn-pricing">Inscribirme</button>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════
+       LOCATION — Encuéntranos
+       ══════════════════════════════ -->
+  <section id="contacto">
+
+    <div class="location-bg">
+      <img
+        src="https://images.unsplash.com/photo-1486325212027-8081e485255e?q=85&w=2000&auto=format&fit=crop"
+        alt="Gym exterior at night"
+        loading="lazy"
+      />
+      <div class="location-bg-overlay"></div>
+    </div>
+
+    <div class="location-inner">
+      <div class="location-layout">
+
+        <!-- Info -->
+        <div class="location-info reveal from-left">
+          <p class="location-eyebrow">Encuéntranos</p>
+          <h3 class="location-address">Eudoro Aráoz 775</h3>
+          <p class="location-city">San Miguel de Tucumán, Argentina</p>
+          <div class="location-divider"></div>
+          <p class="schedule-eyebrow">Horarios de Verano</p>
+          <div class="schedule-list">
+            <p>Lun–Vie: 6:00 – 22:00</p>
+            <p>Sáb: 8:00 – 20:00</p>
+            <p>Dom: 9:00 – 14:00</p>
+          </div>
+          <div class="location-links">
+            <a href="#" class="location-link">WhatsApp</a>
+            <a href="#" class="location-link">Instagram</a>
+          </div>
+        </div>
+
+        <!-- Abstract Map -->
+        <div class="map-widget-wrap reveal from-right">
+          <div class="map-widget">
+            <div class="map-grid-lines">
+              <div class="map-h-line"></div>
+              <div class="map-h-line"></div>
+              <div class="map-h-line"></div>
+              <div class="map-h-line"></div>
+              <div class="map-h-line"></div>
+              <div class="map-v-line"></div>
+              <div class="map-v-line"></div>
+              <div class="map-v-line"></div>
+              <div class="map-v-line"></div>
+              <div class="map-v-line"></div>
+            </div>
+            <div class="map-crosshair-h"></div>
+            <div class="map-crosshair-v"></div>
+            <div class="map-center">
+              <div class="map-dot"></div>
+              <span class="map-label">Leon Gym</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════
+       FOOTER
+       ══════════════════════════════ -->
+  <footer>
+    <div class="footer-inner">
+
+      <div class="footer-brand" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+        <svg aria-hidden="true" style="width:40px;height:45px;color:#B8B9BE">
+          <use href="#lion-shield"/>
+        </svg>
+        <span class="footer-brand-name">Leon Gym</span>
+      </div>
+
+      <nav class="footer-nav">
+        <a href="#filosofia">Filosofía</a>
+        <a href="#espacios">Espacios</a>
+        <a href="#membresias">Membresías</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+
+      <div class="footer-socials">
+        <!-- Instagram -->
+        <a href="#" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+            <circle cx="12" cy="12" r="4"/>
+            <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/>
+          </svg>
+        </a>
+        <!-- Facebook -->
+        <a href="#" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+          </svg>
+        </a>
+        <!-- WhatsApp -->
+        <a href="#" aria-label="WhatsApp">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+          </svg>
+        </a>
+      </div>
+
+      <p class="footer-copy">
+        &copy; <span id="year"></span> Leon Gym · Todos los derechos reservados
+      </p>
+
+    </div>
+  </footer>
+
+
+  <script>
+    /* ===========================
+   LEON GYM — script.js
+   Standalone production build
+   Vanilla JS — no dependencies
+   =========================== */
+
+/* ── Current Year ── */
+const yearEl = document.getElementById('year');
+if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+
+/* ── Smooth Scroll ── */
+function scrollTo(id) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  const navHeight = 72;
+  const top = el.getBoundingClientRect().top + window.pageYOffset - navHeight;
+  window.scrollTo({ top, behavior: 'smooth' });
+}
+
+
+/* ── Mobile Menu ── */
+function toggleMenu() {
+  const menu = document.getElementById('mobile-menu');
+  const burger = document.getElementById('hamburger');
+  const isOpen = menu.classList.contains('open');
+  menu.classList.toggle('open', !isOpen);
+  burger.classList.toggle('open', !isOpen);
+}
+
+function closeMenu() {
+  document.getElementById('mobile-menu').classList.remove('open');
+  document.getElementById('hamburger').classList.remove('open');
+}
+
+// Close mobile menu when clicking outside
+document.addEventListener('click', function(e) {
+  const menu = document.getElementById('mobile-menu');
+  const burger = document.getElementById('hamburger');
+  if (
+    menu.classList.contains('open') &&
+    !menu.contains(e.target) &&
+    !burger.contains(e.target)
+  ) {
+    closeMenu();
+  }
+});
+
+
+/* ── Intersection Observer: Scroll-Reveal ── */
+const revealObserver = new IntersectionObserver(
+  function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        revealObserver.unobserve(entry.target); // fire once
+      }
+    });
+  },
+  {
+    threshold: 0.12,
+    rootMargin: '0px 0px -60px 0px'
+  }
+);
+
+document.querySelectorAll('.reveal').forEach(function(el) {
+  revealObserver.observe(el);
+});
+
+
+/* ── Navbar: subtle shadow on scroll ── */
+(function() {
+  var navbar = document.getElementById('navbar');
+  var scrolled = false;
+
+  function onScroll() {
+    if (window.scrollY > 20) {
+      if (!scrolled) {
+        navbar.style.borderBottomColor = 'rgba(255,255,255,0.08)';
+        scrolled = true;
+      }
+    } else {
+      if (scrolled) {
+        navbar.style.borderBottomColor = 'rgba(255,255,255,0.05)';
+        scrolled = false;
+      }
+    }
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+})();
+
+
+/* ── Footer nav links: smooth scroll ── */
+document.querySelectorAll('.footer-nav a').forEach(function(link) {
+  link.addEventListener('click', function(e) {
+    var href = this.getAttribute('href');
+    if (href && href.startsWith('#')) {
+      e.preventDefault();
+      var id = href.slice(1);
+      scrollTo(id);
+    }
+  });
+});
+
+  </script>
+</body>
+</html>
